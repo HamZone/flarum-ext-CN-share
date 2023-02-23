@@ -6,6 +6,7 @@ import DiscussionHero from 'flarum/forum/components/DiscussionHero';
 export default function () {
     extend(CommentPost.prototype, 'headerItems', function (items) {
         const post = this.attrs.post;
+        const id = post.relationships.discussion.data.id;
         console.log(post)
         var ua = window.navigator.userAgent.toLowerCase();
         console.log(ua)
@@ -13,9 +14,9 @@ export default function () {
             console.log(wx)
             //微信环境
             wx.miniProgram.getEnv(function (res) {
-                if (res.miniprogram && post.data.id) {
+                if (res.miniprogram && id) {
                     console.log(res)
-                    app.store.find('discussions', post.data.id).then(discussion => {
+                    app.store.find('discussions', id).then(discussion => {
                         wx.miniProgram.postMessage({ data: { 
                             title: discussion.title(), 
                             path: app.forum.attribute('baseUrl')+"/d/"+post.data.id, 
