@@ -10,7 +10,8 @@ export default function () {
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
             //微信环境
             wx.miniProgram.getEnv(function (res) {
-                if (!res.miniprogram) {
+                if (res.miniprogram) {
+                    console.log(res)
                     app.store.find('discussions', post.data.id).then(discussion => {
                         wx.miniProgram.postMessage({ data: { 
                             title: discussion.title(), 
