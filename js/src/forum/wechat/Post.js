@@ -6,13 +6,14 @@ import DiscussionHero from 'flarum/forum/components/DiscussionHero';
 export default function () {
     extend(CommentPost.prototype, 'headerItems', function (items) {
         const post = this.attrs.post;
+        console.log(post)
         var ua = window.navigator.userAgent.toLowerCase();
         console.log(ua)
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
             console.log(wx)
             //微信环境
             wx.miniProgram.getEnv(function (res) {
-                if (res.miniprogram) {
+                if (res.miniprogram && post.data.id) {
                     console.log(res)
                     app.store.find('discussions', post.data.id).then(discussion => {
                         wx.miniProgram.postMessage({ data: { 
