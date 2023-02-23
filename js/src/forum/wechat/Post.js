@@ -1,6 +1,6 @@
 import { extend } from 'flarum/common/extend';
 import CommentPost from 'flarum/forum/components/CommentPost';
-import wx from 'weixin-js-sdk'
+import wx from 'weixin-js-sdk-ts'
 import DiscussionHero from 'flarum/forum/components/DiscussionHero';
 
 export default function () {
@@ -8,6 +8,7 @@ export default function () {
         const post = this.attrs.post;
         var ua = window.navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            console.log(ts)
             //微信环境
             wx.miniProgram.getEnv(function (res) {
                 if (res.miniprogram) {
