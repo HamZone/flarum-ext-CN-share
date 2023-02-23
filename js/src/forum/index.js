@@ -1,6 +1,6 @@
 import app from 'flarum/forum/app';
+import Post from './wechat/Post';
 
 app.initializers.add('hamzone/share', () => {
-  // console.log('[hamzone/share] Hello, forum!');
-  
+  Post();
 });
