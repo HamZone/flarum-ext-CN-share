@@ -7,8 +7,9 @@ export default function () {
     extend(CommentPost.prototype, 'headerItems', function (items) {
         const post = this.attrs.post;
         var ua = window.navigator.userAgent.toLowerCase();
+        console.log(ua)
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            console.log(ts)
+            console.log(wx)
             //微信环境
             wx.miniProgram.getEnv(function (res) {
                 if (res.miniprogram) {
