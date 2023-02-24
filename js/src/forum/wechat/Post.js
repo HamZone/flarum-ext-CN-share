@@ -6,7 +6,7 @@ import DiscussionHero from 'flarum/forum/components/DiscussionHero';
 export default function () {
     extend(CommentPost.prototype, 'headerItems', function (items) {
         const post = this.attrs.post;
-        // console.log(post)
+        console.log(post)
 
         const id = post.data.relationships.discussion.data.id;
         var ua = window.navigator.userAgent.toLowerCase();
