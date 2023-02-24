@@ -1,5 +1,6 @@
 {
     "name": "hamzone/share",
+    "description": "for wechat mini app share",
     "keywords": [
         "flarum"
     ],
@@ -22,12 +23,12 @@
     },
     "extra": {
         "flarum-extension": {
-            "title": "Hamzone",
+            "title": "Share",
             "category": "",
             "icon": {
-                "name": "",
-                "color": "",
-                "backgroundColor": ""
+                "name": "fas fa-share",
+                "backgroundColor": "#e74c3c",
+                "color": "#fff"
             }
         },
         "flarum-cli": {
