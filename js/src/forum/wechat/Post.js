@@ -1,12 +1,39 @@
 import { extend } from 'flarum/common/extend';
-// import CommentPost from 'flarum/forum/components/CommentPost';
+import CommentPost from 'flarum/forum/components/CommentPost';
 import wx from 'weixin-js-sdk-ts'
-import HeaderSecondary from 'flarum/common/components/HeaderSecondary';
+import DiscussionHero from 'flarum/forum/components/DiscussionHero';
+import IndexPage from 'flarum/components/IndexPage';
+
 
 export default function () {
+    extend(CommentPost.prototype, 'headerItems', function (items) {
+        const post = this.attrs.post;
+        const id = post.data.relationships.discussion.data.id;
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            //微信环境
+            wx.miniProgram.getEnv(function (res) {
+                if (res.miniprogram && id) {
+                    app.store.find('discussions', id).then(discussion => {
+                        wechat({ 
+                            title: discussion.title(), 
+                            path: app.forum.attribute('baseUrl')+"/d/"+id, 
+                            imageUrl: discussion.user().data.attributes.avatarUrl?
+                                discussion.user().data.attributes.avatarUrl:"" 
+                        })
+                    });
+                   
+                }
 
-    extend(HeaderSecondary.prototype, 'items', function (items) {
-        console.log(1)
+            })
+
+        }
+    })
+
+    extend(IndexPage.prototype, 'hero', function (items) {
+        // console.log(app)
+        // console.log(document.title)
+        // console.log(window.location.href)
         var ua = window.navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
             //微信环境
@@ -14,7 +41,8 @@ export default function () {
                 if (res.miniprogram) {
                     wechat({
                         title: document.title,
-                        path: window.location.href,
+                        path:window.location.href,
+                        imageUrl: ""
                     })
                 }
             })
