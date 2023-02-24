@@ -12,15 +12,13 @@ export default function () {
         var ua = window.navigator.userAgent.toLowerCase();
         // console.log(ua)
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            console.log(wx)
             //微信环境
             wx.miniProgram.getEnv(function (res) {
                 if (res.miniprogram && id) {
-                    // console.log(res)
                     app.store.find('discussions', id).then(discussion => {
                         wx.miniProgram.postMessage({ data: { 
                             title: discussion.title(), 
-                            path: app.forum.attribute('baseUrl')+"/d/"+post.data.id, 
+                            path: app.forum.attribute('baseUrl')+"/d/"+id, 
                             imageUrl: discussion.user().data.attributes.avatarUrl?
                                 discussion.user().data.attributes.avatarUrl:"" 
                         } })
