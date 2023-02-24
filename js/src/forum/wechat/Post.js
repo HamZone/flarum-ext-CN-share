@@ -27,20 +27,4 @@ export default function () {
             })
         }
     })
-
-    // extend(IndexPage.prototype, 'hero', function (items) {
-    //     var ua = window.navigator.userAgent.toLowerCase();
-    //     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-    //         //微信环境
-    //         wx.miniProgram.getEnv(function (res) {
-    //             if (res.miniprogram) {
-    //                 wx.miniProgram.postMessage({ data:{
-    //                     title: document.title,
-    //                     path: window.location.href,
-    //                     imageUrl: ""
-    //                 }})
-    //             }
-    //         })
-    //     }
-    // });
 }
