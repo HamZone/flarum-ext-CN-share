@@ -6,6 +6,10 @@ import IndexPage from 'flarum/components/IndexPage';
 
 export default function () {
     extend(IndexPage.prototype, 'hero', function (items) {
+        // console.log(items)
+        if(app.current.data.routeName=="discussion"){
+            return;
+        }
         var ua = window.navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
             //微信环境
