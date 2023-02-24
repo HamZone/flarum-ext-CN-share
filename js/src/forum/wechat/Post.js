@@ -15,12 +15,12 @@ export default function () {
             wx.miniProgram.getEnv(function (res) {
                 if (res.miniprogram && id) {
                     app.store.find('discussions', id).then(discussion => {
-                        wx.miniProgram.postMessage({ data:{ 
+                        wx.miniProgram.postMessage({ data: { 
                             title: discussion.title(), 
                             path: app.forum.attribute('baseUrl')+"/d/"+id, 
                             imageUrl: discussion.user().data.attributes.avatarUrl?
                                 discussion.user().data.attributes.avatarUrl:"" 
-                        }})
+                        } })
                     });
                    
                 }
@@ -28,19 +28,19 @@ export default function () {
         }
     })
 
-    extend(IndexPage.prototype, 'hero', function (items) {
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            //微信环境
-            wx.miniProgram.getEnv(function (res) {
-                if (res.miniprogram) {
-                    wx.miniProgram.postMessage({ data:{
-                        title: document.title,
-                        path: window.location.href,
-                        imageUrl: ""
-                    }})
-                }
-            })
-        }
-    });
+    // extend(IndexPage.prototype, 'hero', function (items) {
+    //     var ua = window.navigator.userAgent.toLowerCase();
+    //     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+    //         //微信环境
+    //         wx.miniProgram.getEnv(function (res) {
+    //             if (res.miniprogram) {
+    //                 wx.miniProgram.postMessage({ data:{
+    //                     title: document.title,
+    //                     path: window.location.href,
+    //                     imageUrl: ""
+    //                 }})
+    //             }
+    //         })
+    //     }
+    // });
 }
